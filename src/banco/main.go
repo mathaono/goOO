@@ -7,8 +7,8 @@ import (
 
 func main() {
 
-	contaMatheus := contas.ContaCorrente{nome: "Matheus", saldo: 250}
-	contaJose := contas.ContaCorrente{nome: "Jose", saldo: 750}
+	contaMatheus := contas.ContaCorrente{Nome: "Matheus", Saldo: 250}
+	contaJose := contas.ContaCorrente{Nome: "Jose", Saldo: 750}
 	fmt.Println(contaMatheus)
 	fmt.Println(contaJose)
 
