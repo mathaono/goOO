@@ -1,39 +1,41 @@
 package contas
 
+import "banco/clientes"
+
 type ContaCorrente struct {
-	Nome          string
+	Nome          clientes.Titular
 	NumeroAgencia int
 	NumeroConta   int
-	Saldo         float64
+	saldo         float64
 }
 
-func (c *ContaCorrente) Saque(valor float64) (string, float64) {
-	if valor <= c.Saldo {
+func (c *ContaCorrente) Saque(valor float64) string {
+	if valor <= c.saldo {
 		if valor > 0 {
-			c.Saldo -= valor
-			return "Saque realizado com sucesso", valor
+			c.saldo -= valor
+			return "Saque realizado com sucesso"
 		} else {
-			return "Não é permitido valor negativo", valor
+			return "Não é permitido valor negativo"
 		}
 	} else {
-		return "Saldo insuficiente", c.Saldo
+		return "saldo insuficiente"
 	}
 }
 
-func (c *ContaCorrente) Deposita(valor float64) (string, float64) {
+func (c *ContaCorrente) Deposita(valor float64) string {
 	if valor > 0 {
-		c.Saldo += valor
-		return "Deposito realizado com sucesso", valor
+		c.saldo += valor
+		return "Deposito realizado com sucesso"
 	} else {
-		return "Impossível depositar valor negativo", valor
+		return "Impossível depositar valor negativo"
 	}
 }
 
 func (c *ContaCorrente) Transfere(valor float64, destino *ContaCorrente) string {
 
-	if valor <= c.Saldo {
+	if valor <= c.saldo {
 		if valor > 0 {
-			c.Saldo -= valor
+			c.saldo -= valor
 			destino.Deposita(valor)
 			return "Transferencia realizada com sucesso"
 		} else if valor == 0 {
@@ -42,6 +44,10 @@ func (c *ContaCorrente) Transfere(valor float64, destino *ContaCorrente) string 
 			return "Não é permitido valor negativo"
 		}
 	} else {
-		return "Saldo insuficiente"
+		return "saldo insuficiente"
 	}
+}
+
+func (c *ContaCorrente) MostraSaldo() (string, float64) {
+	return "Saldo Atual: ", c.saldo
 }
