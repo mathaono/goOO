@@ -1,2 +1,1 @@
-# Segundo capítulo do módulo de GOLang - Alura 
-# GOLang Orientado a Objetos (OO)
+# GOLang Orientado a Objetos - Alura Completo
